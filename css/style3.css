@@ -282,6 +282,34 @@ footer p {
     color: #99c2f2;
 }
 
+/* SNSアイコンのスタイル */
+.social-icons a {
+    font-size: 1.8rem; /* アイコンのサイズ */
+    color: #e0faff; /* アイコンの色 */
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* transformのために必要 */
+}
+
+.social-icons a:hover {
+    color: #99c2f2; /* ホバー時の色 */
+    transform: scale(1.1); /* ホバー時に少し拡大 */
+}
+
+.social-icons a + a {
+    margin-left: 15px; /* アイコン間のスペース */
+}
+
+/* レスポンシブ対応の調整 */
+/* 小さい画面（sm以下）では中央揃え */
+@media (max-width: 767.98px) {
+    footer .col-md-4 {
+        text-align: center !important; /* 各カラムの中央揃えを強制 */
+    }
+    footer h5 {
+        margin-top: 25px; /* セクション間のスペース */
+    }
+}
+
 /* フェードインアニメーション */
 .animate {
     opacity: 0;
@@ -528,72 +556,77 @@ footer p {
     }
 }
 
-/* --- フッターの追加スタイル (style3.cssに追加) --- */
-
-footer {
-    background-color: #1a272a; /* ヘッダーと合わせた濃い色 */
-    color: white;
-    padding: 30px 0; /* Bootstrapのpy-4と合わせて最終的なパディングを調整 */
-    font-size: 0.9rem;
+/* --- ログインフォームのスタイル修正 --- */
+.login-container {
+    background-color: #ffffff; /* フォームの背景色を白に */
+    padding: 40px 30px; /* 上下のパディングを増やし、左右は適度に */
+    border-radius: 10px; /* 角を丸く */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* 影を強調 */
+    max-width: 450px; /* フォームの最大幅を設定し、細長くなるのを防ぐ */
+    width: 100%; /* 親要素に合わせて幅を100%に */
+    margin: 50px auto; /* フォーム全体を上下にマージンを取り中央に配置 */
+    /* text-align: center; /* h2やボタンは子要素で制御するため削除 */
 }
 
-footer h5 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: #e0faff; /* 明るい青 */
+.login-container h2 {
+    color: #1a272a; /* ヘッダーと合わせた濃い色 */
+    font-size: 2.2rem; /* タイトルサイズを調整 */
+    margin-bottom: 30px; /* タイトル下のマージンを増やす */
+    position: relative;
+    padding-bottom: 10px;
+    text-align: center; /* h2を中央揃え */
 }
 
-footer p {
-    margin: 0;
-    color: #b0c4de; /* 少し淡い色で読みやすく */
+.login-container h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px; /* 短い下線で強調 */
+    height: 3px;
+    background-color: #99c2f2;
+    border-radius: 2px;
 }
 
-footer .list-unstyled {
-    padding-left: 0;
-    list-style: none;
+.form-control {
+    padding: 12px 15px; /* 入力フィールドのパディングを増やす */
+    font-size: 1.1rem; /* フォントサイズを少し大きく */
+    border-radius: 8px; /* 角を丸く */
+    border: 1px solid #ddd; /* ボーダーの色を調整 */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-footer .list-unstyled li {
-    margin-bottom: 8px;
+.form-control:focus {
+    outline: none;
+    border-color: #1f3740; /* フォーカス時のボーダー色 */
+    box-shadow: 0 0 0 0.25rem rgba(31, 55, 64, 0.25); /* フォーカス時の影 */
 }
 
-footer .footer-links a {
-    color: #e0faff;
-    text-decoration: none;
-    transition: color 0.3s ease;
+.login-container .btn-primary {
+    width: 100%; /* ボタンをフォーム幅いっぱいに */
+    padding: 15px; /* ボタンのパディングを増やす */
+    font-size: 1.2rem; /* ボタンのフォントサイズを大きく */
+    border-radius: 8px; /* ボタンの角を丸く */
+    margin-top: 25px; /* ボタンの上のマージン */
 }
 
-footer .footer-links a:hover {
-    color: #99c2f2;
+.login-container .alert {
+    margin-top: 20px; /* アラートメッセージの上のマージン */
+    font-size: 1rem;
+    padding: 10px;
+    text-align: center; /* アラートメッセージを中央揃え */
 }
 
-/* SNSアイコンのスタイル */
-.social-icons a {
-    font-size: 1.8rem; /* アイコンのサイズ */
-    color: #e0faff; /* アイコンの色 */
-    transition: color 0.3s ease, transform 0.2s ease;
-    display: inline-block; /* transformのために必要 */
+/* ラベルの隠し方（Bootstrap 5のvisually-hiddenを利用しているため、CSSでの調整は最小限に） */
+.form-label.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }
-
-.social-icons a:hover {
-    color: #99c2f2; /* ホバー時の色 */
-    transform: scale(1.1); /* ホバー時に少し拡大 */
-}
-
-.social-icons a + a {
-    margin-left: 15px; /* アイコン間のスペース */
-}
-
-/* レスポンシブ対応の調整 */
-/* 小さい画面（sm以下）では中央揃え */
-@media (max-width: 767.98px) {
-    footer .col-md-4 {
-        text-align: center !important; /* 各カラムの中央揃えを強制 */
-    }
-    footer h5 {
-        margin-top: 25px; /* セクション間のスペース */
-    }
-}
-
