@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>実績詳細 - GCC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/style3.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="bg-dark text-light">
+    <nav class="navbar navbar-expand-lg navbar-dark container">
+        <a class="navbar-brand" href="index.html">GCC</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html#about">サークル紹介</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#departments">部門紹介</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#works">実績</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#games">ゲーム紹介</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<section class="detail-section animate fade-up">
+    <div class="container">
+        <h2 class="text-center">プロジェクト名詳細</h2>
+        <div class="detail-content">
+            <img src="https://placehold.jp/800x450.png?text=Work+Detail+Image" alt="詳細画像" class="img-fluid mb-4">
+            <h3>プロジェクト概要</h3>
+            <p>
+                このプロジェクトは、〇〇年に制作された、当サークルの代表的な実績の一つです。
+                プログラミング部門、イラスト部門、音楽部門、シナリオ部門が協力し、約半年間の開発期間を経て完成しました。
+                特に、〇〇の技術を導入した点が特徴で、これによりこれまでにないユーザー体験を実現しました。
+            </p>
+            <h3>開発ストーリー</h3>
+            <p>
+                開発当初は〇〇な課題に直面しましたが、チーム全員で議論を重ね、革新的な解決策を見出しました。
+                特に、〇〇の表現には多くの時間を費やし、試行錯誤の結果、メンバーの熱意が詰まった作品となりました。
+                制作過程でのエピソードや苦労話など、詳しい情報は今後ブログで公開予定です。
+            </p>
+            <h3>担当部門</h3>
+            <ul class="list-unstyled">
+                <li><strong>プログラミング:</strong> ゲームシステムの設計・実装、AI開発、最適化</li>
+                <li><strong>イラスト:</strong> キャラクターデザイン、背景アート、UIデザイン</li>
+                <li><strong>音楽:</strong> BGM制作、効果音制作、サウンドディレクション</li>
+                <li><strong>シナリオ:</strong> ストーリー原案、キャラクター設定、イベントスクリプト</li>
+            </ul>
+            <div class="text-center mt-5">
+                <a href="index.html#works" class="btn btn-primary">実績一覧へ戻る</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-dark text-light text-center py-4">
+    <p>&copy; Copyright (C) 2014-2024 GCC All Rights Reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./js/script.js"></script> <script>
+    // URLからIDを取得し、表示内容を動的に変更する（モックアップなので具体的な内容は固定）
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const workId = urlParams.get('id');
+        const titleElement = document.querySelector('.detail-section h2');
+        const imgElement = document.querySelector('.detail-content img');
+
+        if (workId === '1') {
+            titleElement.textContent = 'Project Alpha: 幻影の森 詳細';
+            imgElement.src = 'https://placehold.jp/800x450.png?text=Project+Alpha+Detail';
+        } else if (workId === '2') {
+            titleElement.textContent = 'Project Beta: スカイレーサー 詳細';
+            imgElement.src = 'https://placehold.jp/800x450.png?text=Project+Beta+Detail';
+        } else if (workId === '3') {
+            titleElement.textContent = 'Project Gamma: パズルガーデン 詳細';
+            imgElement.src = 'https://placehold.jp/800x450.png?text=Project+Gamma+Detail';
+        } else {
+            titleElement.textContent = 'プロジェクト詳細 (IDが見つかりません)';
+            imgElement.src = 'https://placehold.jp/800x450.png?text=Work+Not+Found';
+        }
+    });
+</script>
+</body>
+</html>

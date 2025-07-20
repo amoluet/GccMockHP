@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCC - 神奈川大学 - Game Creators Circle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/style3.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<header class="bg-dark text-light">
+    <nav class="navbar navbar-expand-lg navbar-dark container">
+        <a class="navbar-brand" href="#">GCC</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">サークル紹介</a></li>
+                <li class="nav-item"><a class="nav-link" href="#departments">部門紹介</a></li>
+                <li class="nav-item"><a class="nav-link" href="#blog">広報ブログ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#games">ゲーム紹介</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="hero-section">
+    <h1 class="animate-hero">神奈川大学 Game Creators Circle</h1>
+</div>
+
+<section id="about" class="section-padding text-center animate fade-up">
+    <div class="container">
+        <h2>サークル紹介</h2>
+        <p class="lead">GCC (Game Creators Circle)は、ゲーム制作を通じてスキルを磨き、協力して創作活動を行うサークルです。私たちは、プログラミング、イラスト、音楽、シナリオの各分野で才能を持つメンバーが集まり、協力して魅力的なゲームを開発しています。初心者から上級者まで、ゲーム制作に情熱を持つ学生を歓迎します！</p>
+    </div>
+</section>
+
+<section id="departments" class="section-padding bg-light animate fade-up">
+    <div class="container">
+        <h2 class="text-center mb-5">部門紹介</h2>
+        <ul class="nav nav-tabs justify-content-center mb-4" id="departmentTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="programming-tab" data-bs-toggle="tab" data-bs-target="#programming" type="button" role="tab" aria-controls="programming" aria-selected="true">プログラミング</button>
+            </li>
+            <li class="nav-item" role="presentation">
+            <button class="nav-link" id="graphics-tab" data-bs-toggle="tab" data-bs-target="#graphics" type="button" role="tab" aria-controls="graphics" aria-selected="false">イラスト</button>
+            </li>
+            <li class="nav-item" role="presentation">
+            <button class="nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#music" type="button" role="tab" aria-controls="music" aria-selected="false">音楽</button>
+            </li>
+            <li class="nav-item" role="presentation">
+            <button class="nav-link" id="writing-tab" data-bs-toggle="tab" data-bs-target="#writing" type="button" role="tab" aria-controls="writing" aria-selected="false">シナリオ</button>
+            </li>
+        </ul>
+        <div class="tab-content pt-4" id="departmentTabsContent">
+            <div class="tab-pane fade show active" id="programming" role="tabpanel" aria-labelledby="programming-tab">
+                <h3 class="text-center">プログラマー</h3>
+                <p class="text-center">ゲームのシステム構築、ロジックの実装、物理演算、AI開発など、ゲームの技術的な側面を担います。C++, C#, Pythonなど多様な言語を使いこなし、アイディアを形にする技術の要となる部門です！</p>
+            </div>
+            <div class="tab-pane fade" id="graphics" role="tabpanel" aria-labelledby="graphics-tab">
+                <h3 class="text-center">グラフィッカー</h3>
+                <p class="text-center">キャラクターデザイン、背景美術、UI/UXデザイン、アニメーション制作など、ゲームの視覚的な魅力を創造します。2Dアートから3Dモデリングまで、様々なツールを駆使し、ゲームの世界観を豊かに彩ります！</p>
+            </div>
+            <div class="tab-pane fade" id="music" role="tabpanel" aria-labelledby="music-tab">
+                <h3 class="text-center">コンポーザー</h3>
+                <p class="text-center">ゲームBGM、効果音、ボイス収録、サウンドエフェクトなど、ゲームの聴覚的な体験をデザインします。プレイヤーの感情を揺さぶる音楽や、ゲームプレイを盛り上げる効果音を制作し、最高の音楽体験を提供します！</p>
+            </div>
+            <div class="tab-pane fade" id="writing" role="tabpanel" aria-labelledby="writing-tab">
+                <h3 class="text-center">シナリオライター</h3>
+                <p class="text-center">ゲームのストーリー、キャラクター設定、ダイアログ、世界観構築など、ゲームの物語の土台を作ります。プレイヤーを引き込む魅力的な物語とキャラクターを生み出し、ゲーム体験をより深く豊かなものにします！</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="blog" class="section-padding animate fade-up">
+    <div class="container">
+        <h2 class="text-center mb-5">広報ブログ</h2>
+        <div id="blog-articles" class="row row-cols-1 row-cols-md-3 g-4">
+            </div>
+        <div class="text-center mt-5">
+            <a href="#" class="btn btn-primary">ブログ一覧を見る</a>
+        </div>
+    </div>
+</section>
+
+<section id="games" class="section-padding bg-light animate fade-up">
+    <div class="container">
+        <h2 class="text-center mb-5">ゲーム紹介</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100 game-card" data-game-id="1">
+                    <img src="https://placehold.jp/400x250.png?text=Game+1+Thumbnail" class="card-img-top" alt="ゲーム1">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">アストラルクエスト</h5>
+                        <p class="card-text">壮大な宇宙を舞台にしたRPG。仲間と共に銀河の謎を解き明かせ！</p>
+                        <div class="mt-auto text-end">
+                            <a href="game-detail.html?id=1" class="btn btn-primary btn-sm">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 game-card" data-game-id="2">
+                    <img src="https://placehold.jp/400x250.png?text=Game+2+Thumbnail" class="card-img-top" alt="ゲーム2">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">ミスティックダンジョン</h5>
+                        <p class="card-text">ローグライク要素を取り入れたアクションゲーム。無限に広がるダンジョンに挑戦！</p>
+                        <div class="mt-auto text-end">
+                            <a href="game-detail.html?id=2" class="btn btn-primary btn-sm">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 game-card" data-game-id="3">
+                    <img src="https://placehold.jp/400x250.png?text=Game+3+Thumbnail" class="card-img-top" alt="ゲーム3">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">タイムトラベル探偵</h5>
+                        <p class="card-text">時間を遡って事件を解決するミステリーアドベンチャー。証拠を見つけ真実を暴け！</p>
+                        <div class="mt-auto text-end">
+                            <a href="game-detail.html?id=3" class="btn btn-primary btn-sm">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="popup">
+    <h2 class="text-center mb-3">利用規約</h2>
+    <div class="popup-content-wrapper">
+        <iframe src="./licence/licence.html" title="利用規約" style="width: 100%; height: 250px; border: 1px solid #ddd; background: #f9f9f9; border-radius: 5px;"></iframe>
+    </div>
+    <div class="text-center mt-3">
+        <button class="btn btn-secondary" onclick="togglePopup()">閉じる</button>
+    </div>
+</div>
+
+<footer class="bg-dark text-light py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <p class="mb-2 mb-md-0">© Copyright (C) 2014-2024 GCC All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="#" class="text-light me-3" onclick="togglePopup()">利用規約</a>
+            <a href="#" class="text-light me-3">リンク集</a>
+            <a href="login.html" class="text-light">部員用ログイン</a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./js/script.js"></script>
+
+</body>
+</html>
