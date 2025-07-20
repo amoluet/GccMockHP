@@ -46,37 +46,12 @@ function togglePopup() {
   }
 }
 
-// ポップアップのボタンにイベントリスナーを追加
+// ページコンテンツが全て読み込まれた後に実行される処理
 document.addEventListener('DOMContentLoaded', function() {
+    // ポップアップの閉じるボタンにイベントリスナーを追加
     const closePopupButton = document.querySelector('#popup .btn-secondary');
     if (closePopupButton) {
         closePopupButton.addEventListener('click', togglePopup);
-    }
-
-    // CSSアニメーションのためのキーフレームをJSで追加 (またはCSSに直接記述)
-    const styleSheet = document.styleSheets[0]; // 最初のスタイルシートを取得
-    // 既存のルールをチェックして重複を避ける
-    const hasReverseAnim = Array.from(styleSheet.cssRules).some(rule => rule.name === 'popup2FadeYReverse');
-    if (!hasReverseAnim) {
-        styleSheet.insertRule(`
-            @keyframes popup2FadeYReverse {
-                from {
-                    opacity: 1;
-                    transform: translate(-50%, -50%);
-                }
-                to {
-                    opacity: 0;
-                    transform: translate(-50%, -70%);
-                }
-            }
-        `, styleSheet.cssRules.length);
-
-        styleSheet.insertRule(`
-            @keyframes overlayFadeReverse {
-                from { opacity: 1; }
-                to { opacity: 0; }
-            }
-        `, styleSheet.cssRules.length);
     }
 
     // 広報ブログ記事の読み込みと表示
@@ -109,4 +84,3 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error loading blog articles:', error));
     }
 });
-
