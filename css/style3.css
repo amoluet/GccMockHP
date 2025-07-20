@@ -245,13 +245,11 @@ h3 {
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
-  
 .btn-primary:hover {
     background-color: #2a6a58; /* ホバー時の色 */
     transform: translateY(-2px); /* 少し浮き上がる */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
-
 .btn-secondary {
     background-color: #6c757d;
     border: none;
@@ -260,12 +258,11 @@ h3 {
     font-weight: 500;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
 .btn-secondary:hover {
     background-color: #5a6268;
     transform: translateY(-2px);
 }
-  
+
 /* フッター */
 footer {
     background-color: #1a2a27; /* ヘッダーと合わせた濃い色 */
@@ -273,17 +270,14 @@ footer {
     padding: 30px 0; /* パディングを増やす */
     font-size: 0.9rem;
 }
-  
 footer p {
     margin: 0;
 }
-
 .footer-links a {
     color: #e0ffe0;
     text-decoration: none;
     transition: color 0.3s ease;
 }
-
 .footer-links a:hover {
     color: #99f2c8;
 }
@@ -294,76 +288,33 @@ footer p {
     transform: translateY(30px); /* 少し下から浮き上がる */
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
-  
 .animate.fade-in {
     opacity: 1;
     transform: translateY(0);
 }
-
 .animate.fade-up {
     opacity: 0;
     transform: translateY(50px);
 }
-
 .animate.fade-up.fade-in {
     opacity: 1;
     transform: translateY(0);
 }
-  
-/* モーダルウィンドウ */
-/* 今回は詳細ページに遷移するので、モーダルは利用規約のみに限定 */
-.modal {
+
+/* ポップアップ/オーバーレイ */
+.overlay {
     display: none;
     position: fixed;
-    z-index: 1000;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px); /* 背景をぼかす */
-    -webkit-backdrop-filter: blur(5px);
-}
-  
-.modal-content {
-    margin: 8% auto; /* 上部のマージンを調整 */
-    padding: 30px;
-    background: white;
-    width: 90%;
-    max-width: 600px;
-    border-radius: 15px; /* 角を丸く */
-    position: relative;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    animation: zoomIn 0.4s forwards; /* ズームインアニメーション */
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1040; /* Bootstrap modal-backdropのz-indexより高く */
+    animation: overlayFade 0.3s forwards;
+    backdrop-filter: blur(3px); /* 背景をぼかす */
 }
 
-@keyframes zoomIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-  
-.close {
-    position: absolute;
-    right: 25px;
-    top: 15px;
-    font-size: 2rem;
-    cursor: pointer;
-    color: #aaa;
-    transition: color 0.3s;
-}
-
-.close:hover {
-    color: #333;
-}
-
-/* ポップアップ (利用規約) */
 .popup {
     display: none;
     position: fixed;
@@ -372,35 +323,14 @@ footer p {
     transform: translate(-50%, -50%);
     background-color: #fff;
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    animation: popup2FadeY 0.4s ease forwards;
-    z-index: 1050; /* モーダルよりも手前に */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1050; /* Bootstrap modalのz-indexより高く */
     max-width: 600px;
     width: 90%;
-}
-
-.popup h2 {
-    margin-top: 0;
-    font-size: 2rem;
-}
-
-.popup-content-wrapper {
-    margin-bottom: 20px;
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* より濃いオーバーレイ */
-    animation: overlayFade 0.4s ease forwards;
-    z-index: 1040;
-    backdrop-filter: blur(3px); /* オーバーレイもぼかす */
-    -webkit-backdrop-filter: blur(3px);
+    max-height: 80vh; /* 高さの最大値を設定 */
+    overflow-y: auto; /* コンテンツがはみ出したらスクロール */
+    animation: popup2FadeY 0.3s forwards;
 }
 
 @keyframes overlayFade {
@@ -408,174 +338,136 @@ footer p {
     to { opacity: 1; }
 }
 
-@keyframes popup2FadeY {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -70%); /* 上から少し落ちてくる */
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-}
-/* ポップアップ逆アニメーション (JSで追加される) */
-@keyframes popup2FadeYReverse {
-    from {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-    to {
-        opacity: 0;
-        transform: translate(-50%, -70%);
-    }
-}
-
 @keyframes overlayFadeReverse {
     from { opacity: 1; }
     to { opacity: 0; }
 }
 
-/* iframeのスタイル調整 */
-iframe {
-    overflow-clip-margin: content-box !important;
-    overflow: auto !important; /* スクロールバーは必要に応じて表示 */
-    border-width: 1px;
-    border-style: solid;
-    border-color: #ddd; /* 控えめなボーダー */
-    border-image: initial;
-    width: 100%; /* 親要素に合わせる */
-    height: 300px; /* 高さを調整 */
-    border-radius: 8px; /* 角を丸く */
-    background: #fdfdfd;
+@keyframes popup2FadeY {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
 }
 
-/* 詳細ページ用スタイル（共通） */
+@keyframes popup2FadeYReverse {
+    from { opacity: 1; transform: translate(-50%, -50%); }
+    to { opacity: 0; transform: translate(-50%, -60%); }
+}
+
+/* 広報バナー (Carousel) スタイル */
+.promotion-banner {
+    background-color: #f0f5f4; /* 少し明るい背景 */
+    padding: 60px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.promotion-banner h2 {
+    color: #1a2a27;
+}
+
+.promotion-banner .carousel-item img {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 350px; /* バナーの高さ調整 */
+    object-fit: cover;
+}
+
+.promotion-banner .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 0 0 10px 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    color: white;
+    text-align: left;
+}
+
+.promotion-banner .carousel-caption h5 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.promotion-banner .carousel-caption .badge {
+    font-size: 0.9em;
+    padding: 5px 10px;
+}
+
+.promotion-banner .carousel-control-prev-icon,
+.promotion-banner .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    padding: 20px;
+}
+
+.promotion-banner .carousel-indicators button {
+    background-color: #1f4037;
+    height: 8px;
+    width: 30px;
+    border-radius: 5px;
+}
+
+.promotion-banner .carousel-indicators button.active {
+    background-color: #2a6a58;
+}
+
+/* ブログカードのタグ表示 */
+.blog-tags .badge {
+    font-size: 0.8em;
+    padding: 0.4em 0.7em;
+    border-radius: 0.25rem;
+    background-color: #1f4037; /* または別の色 */
+    color: white;
+}
+
+/* blog-list.htmlのタグフィルタボタン */
+.btn-outline-primary {
+    color: #1f4037;
+    border-color: #1f4037;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary.active {
+    background-color: #1f4037;
+    color: white;
+    border-color: #1f4037;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* ブログ記事詳細ページ */
 .detail-section {
-    padding: 80px 0;
-}
-
-.detail-section h2 {
-    margin-bottom: 40px;
-}
-
-.detail-content {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding-top: 80px; /* ヘッダーとの兼ね合いで調整 */
+    padding-bottom: 80px;
 }
 
 .detail-content img {
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: block;
+    margin: 0 auto 30px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.detail-content h3 {
+    font-size: 2.2rem;
+    color: #1a2a27;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #99f2c8;
+    padding-bottom: 10px;
 }
 
 .detail-content p {
     font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 20px;
-}
-
-.detail-content .btn {
-    margin-top: 20px;
-}
-
-.game-media {
-    margin-top: 30px;
-}
-
-.game-media h3 {
-    margin-bottom: 20px;
-    color: #1f4037;
-    font-size: 1.8rem;
-}
-
-.game-media .row img {
-    margin-bottom: 15px;
-}
-
-.game-info-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 25px;
-}
-
-.game-info-list li {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+    line-height: 2;
+    margin-bottom: 1.5rem;
     color: #444;
 }
 
-.game-info-list li strong {
-    color: #1f4037;
-    margin-right: 8px;
+.blog-tags .badge.bg-info { /* 詳細ページ用のタグの色 */
+    background-color: #0d6efd !important; /* Bootstrapのinfo色を例に */
 }
-
-/* Login Page Styles */
-.login-container {
-    max-width: 500px;
-    margin: 80px auto;
-    padding: 40px;
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.login-container h2 {
-    margin-bottom: 30px;
-    color: #1a2a27;
-}
-
-.login-container .form-control {
-    border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-}
-
-.login-container .btn-primary {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.1rem;
-}
-
-.login-container .alert {
-    margin-top: 20px;
-    border-radius: 8px;
-}
-
-/* Blog Article Card Styles */
-.blog-card {
-    cursor: pointer; /* クリック可能であることを示す */
-}
-
-.blog-card .card-img-top {
-    height: 200px; /* ブログカードの画像高さを調整 */
-}
-
-.blog-card .card-text.excerpt {
-    font-size: 0.95rem;
-    color: #777;
-    height: 70px; /* 抜粋の高さ固定 */
-    overflow: hidden; /* はみ出たテキストを隠す */
-    text-overflow: ellipsis; /* 省略記号 */
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* 3行に制限 */
-    -webkit-box-orient: vertical;
-}
-
-.blog-card .card-footer {
-    background-color: transparent;
-    border-top: none;
-    padding-top: 0;
-    font-size: 0.85rem;
-    color: #999;
-}
-
 
 /* レスポンシブデザインの調整 */
 @media (max-width: 992px) {
@@ -590,6 +482,15 @@ iframe {
     }
     .footer-links {
         margin-top: 15px;
+    }
+    .promotion-banner .carousel-item img {
+        height: 250px; /* 小さな画面での高さ */
+    }
+    .promotion-banner .carousel-caption h5 {
+        font-size: 1.4rem;
+    }
+    .promotion-banner .carousel-caption .badge {
+        font-size: 0.8em;
     }
 }
 
@@ -613,42 +514,16 @@ iframe {
         padding: 10px 15px;
         font-size: 0.9rem;
     }
-    .modal-content {
-        margin: 5% auto;
-        padding: 20px;
+    .promotion-banner .carousel-item img {
+        height: 180px; /* さらに小さな画面での高さ */
     }
-    .footer-links a {
-        display: block;
-        margin-bottom: 8px;
+    .promotion-banner .carousel-caption {
+        padding: 10px;
     }
-}
-
-@media (max-width: 576px) {
-    .hero-section h1 {
-        font-size: 2rem;
-        text-align: center;
-    }
-    h2 {
-        font-size: 1.8rem;
-    }
-    .section-padding {
-        padding: 40px 0;
-    }
-    .navbar-brand {
-        font-size: 1.2rem !important;
-    }
-    header .nav-link {
-        margin: 0 5px;
-        font-size: 0.9rem;
-    }
-    .card-title {
+    .promotion-banner .carousel-caption h5 {
         font-size: 1.2rem;
     }
-    .card-text {
-        font-size: 0.9rem;
-    }
-    .login-container {
-        margin: 40px 15px;
-        padding: 25px;
+    .promotion-banner .carousel-caption .badge {
+        display: none; /* 小さい画面ではカテゴリバッジを非表示に */
     }
 }

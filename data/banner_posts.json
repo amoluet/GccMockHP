@@ -1,0 +1,30 @@
+[
+    {
+        "id": "banner1",
+        "title": "新入生向け！ゲーム制作体験会 開催",
+        "image": "https://placehold.jp/1200x400/336655/ffffff?text=Newcomer+Event",
+        "link": "blog-detail.html?id=1",
+        "category": "イベント"
+    },
+    {
+        "id": "banner2",
+        "title": "秋の新作ゲーム発表会 開催決定！",
+        "image": "https://placehold.jp/1200x400/1f4037/ffffff?text=New+Game+Reveal",
+        "link": "blog-detail.html?id=2",
+        "category": "お知らせ"
+    },
+    {
+        "id": "banner3",
+        "title": "Unreal Engine勉強会、初心者大歓迎！",
+        "image": "https://placehold.jp/1200x400/2a6a58/ffffff?text=Unreal+Study",
+        "link": "blog-detail.html?id=3",
+        "category": "勉強会"
+    },
+    {
+        "id": "banner4",
+        "title": "サークル紹介動画を公開しました！",
+        "image": "https://placehold.jp/1200x400/6c757d/ffffff?text=Circle+Video",
+        "link": "index.html#about",
+        "category": "広報"
+    }
+]
