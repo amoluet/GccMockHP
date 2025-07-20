@@ -381,7 +381,6 @@ if (window.location.pathname.endsWith('member-area.html')) {
         // ログインしていない場合、ログインページへリダイレクト
         alert('このページへのアクセスにはログインが必要です。');
         window.location.href = 'login.html';
-        return;
     }
 
     // ログアウトボタンの処理

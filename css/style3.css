@@ -527,3 +527,73 @@ footer p {
         display: none; /* 小さい画面ではカテゴリバッジを非表示に */
     }
 }
+
+/* --- フッターの追加スタイル (style3.cssに追加) --- */
+
+footer {
+    background-color: #1a272a; /* ヘッダーと合わせた濃い色 */
+    color: white;
+    padding: 30px 0; /* Bootstrapのpy-4と合わせて最終的なパディングを調整 */
+    font-size: 0.9rem;
+}
+
+footer h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #e0faff; /* 明るい青 */
+}
+
+footer p {
+    margin: 0;
+    color: #b0c4de; /* 少し淡い色で読みやすく */
+}
+
+footer .list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+footer .list-unstyled li {
+    margin-bottom: 8px;
+}
+
+footer .footer-links a {
+    color: #e0faff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer .footer-links a:hover {
+    color: #99c2f2;
+}
+
+/* SNSアイコンのスタイル */
+.social-icons a {
+    font-size: 1.8rem; /* アイコンのサイズ */
+    color: #e0faff; /* アイコンの色 */
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* transformのために必要 */
+}
+
+.social-icons a:hover {
+    color: #99c2f2; /* ホバー時の色 */
+    transform: scale(1.1); /* ホバー時に少し拡大 */
+}
+
+.social-icons a + a {
+    margin-left: 15px; /* アイコン間のスペース */
+}
+
+/* レスポンシブ対応の調整 */
+/* 小さい画面（sm以下）では中央揃え */
+@media (max-width: 767.98px) {
+    footer .col-md-4 {
+        text-align: center !important; /* 各カラムの中央揃えを強制 */
+    }
+    footer h5 {
+        margin-top: 25px; /* セクション間のスペース */
+    }
+}
+
