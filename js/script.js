@@ -228,39 +228,6 @@ async function loadBlogArticleDetail() {
     }
 }
 
-// 利用規約ポップアップの内容をlicence.htmlからロードする関数
-async function loadTermsAndConditions() {
-    try {
-        const response = await fetch('licence.html');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const licenceHtml = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(licenceHtml, 'text/html');
-        // licence.htmlの<body>内のコンテンツを抽出して挿入
-        const termsContentDiv = document.getElementById('terms-content');
-        if (termsContentDiv) {
-            const termsBodyContent = doc.body.innerHTML;
-            // licence.js が生成する #terms の内容のみを抽出
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = termsBodyContent;
-            const actualTerms = tempDiv.querySelector('#terms');
-            if (actualTerms) {
-                termsContentDiv.innerHTML = actualTerms.innerHTML;
-            } else {
-                termsContentDiv.innerHTML = '<p>利用規約のコンテンツを読み込めませんでした。</p>';
-            }
-        }
-    } catch (error) {
-        console.error('利用規約の読み込みに失敗しました:', error);
-        const termsContentDiv = document.getElementById('terms-content');
-        if (termsContentDiv) {
-            termsContentDiv.innerHTML = '<p>利用規約の読み込み中にエラーが発生しました。</p>';
-        }
-    }
-}
-
 
 // スクロールアニメーション
 const animatedElements = document.querySelectorAll(".animate");
