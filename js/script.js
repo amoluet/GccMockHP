@@ -339,10 +339,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 既にログインしている場合はmember-area.htmlへリダイレクト
     if (localStorage.getItem('isLoggedIn') === 'true') {
-        if (window.location.pathname.endsWith('login.html')) { // login.htmlにいる場合のみリダイレクト
+        if (window.location.pathname.endsWith('login.html')) {
             window.location.href = 'member-area.html';
         }
-        return; 
     }
 
     if (loginForm) { // login.html の場合のみ実行
@@ -356,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 loginMessage.textContent = 'ログイン成功！部員ページへリダイレクトします...';
                 loginMessage.className = 'alert alert-success';
                 loginMessage.style.display = 'block';
-                
+
                 // ログイン成功時にlocalStorageにフラグを保存
                 localStorage.setItem('isLoggedIn', 'true');
 
@@ -372,26 +371,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // localStorageからログイン状態をチェック
-    if (window.location.pathname.endsWith('member-area.html')) {
-        const isLoggedIn = localStorage.getItem('isLoggedIn');
-
-        if (isLoggedIn !== 'true') {
-            // ログインしていない場合、ログインページへリダイレクト
-            alert('このページへのアクセスにはログインが必要です。');
-            window.location.href = 'login.html';
-            return; 
-        }
-
-        // ログアウトボタンの処理
-        const logoutButton = document.getElementById('logoutButton');
-        if (logoutButton) {
-            logoutButton.addEventListener('click', () => {
-                localStorage.removeItem('isLoggedIn'); // ログイン状態をクリア
-                alert('ログアウトしました。');
-                window.location.href = 'login.html'; // ログインページへ戻る
-            });
-        }
-    }
 });
+
+
+if (window.location.pathname.endsWith('member-area.html')) {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    if (isLoggedIn !== 'true') {
+        // ログインしていない場合、ログインページへリダイレクト
+        alert('このページへのアクセスにはログインが必要です。');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // ログアウトボタンの処理
+    const logoutButton = document.getElementById('logoutButton'); 
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            localStorage.removeItem('isLoggedIn');
+            alert('ログアウトしました。');
+            window.location.href = 'login.html';
+        });
+    } else {
+        console.log("IDが'logoutButton'の要素が見つかりません。");
+    }
+}

@@ -3,35 +3,35 @@ body {
     font-family: 'Noto Sans JP', sans-serif; /* 日本語に合うフォントを追加 */
     line-height: 1.8; /* 行間を広げて読みやすく */
     color: #333; /* 全体的な文字色 */
-    background-color: #f4f7f6; /* 柔らかい背景色 */
+    background-color: #f4f6f7; /* 柔らかい背景色 */
 }
-  
+
 /* ヘッダー */
 header {
-    background: linear-gradient(to right, #1a2a27, #336655); /* 深い緑系のグラデーション */
+    background: linear-gradient(to right, #1a272a, #335566); /* 深い青系のグラデーション */
     padding: 15px 0; /* パディングを増やす */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* 影を強調 */
     position: sticky; /* スクロールしてもヘッダーを固定 */
     top: 0;
     z-index: 1020;
 }
-  
+
 header .navbar-brand {
     font-family: 'Montserrat', sans-serif; /* ロゴにモダンなフォント */
     font-size: 1.8rem; /* サイズアップ */
     font-weight: 700;
-    color: #e0ffe0 !important; /* 明るい緑 */
+    color: #e0faff !important; /* 明るい青 */
     letter-spacing: 1px; /* 文字間隔 */
 }
-  
+
 header .nav-link {
-    color: #e0ffe0 !important; /* ナビリンクの色 */
+    color: #e0faff !important; /* ナビリンクの色 */
     margin: 0 15px; /* マージンを増やす */
     transition: all 0.4s ease-in-out; /* ホバーアニメーションを滑らかに */
     position: relative;
     padding-bottom: 5px; /* 下線のためにスペースを確保 */
 }
-  
+
 header .nav-link::after {
     content: '';
     position: absolute;
@@ -39,22 +39,22 @@ header .nav-link::after {
     height: 2px;
     bottom: 0;
     left: 50%;
-    background-color: #99f2c8; /* ホバー時の下線の色 */
+    background-color: #99c2f2; /* ホバー時の下線の色 */
     transition: all 0.3s ease-in-out;
     transform: translateX(-50%);
 }
 
 header .nav-link:hover {
-    color: #99f2c8 !important; /* ホバー時の色を強調 */
+    color: #99c2f2 !important; /* ホバー時の色を強調 */
 }
 
 header .nav-link:hover::after {
     width: 100%; /* ホバー時に下線が広がる */
 }
-  
+
 /* ヒーローセクション */
 .hero-section {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.jp/1920x800/1a2a27/ffffff?text=Game+Creators+Circle') no-repeat center center; /* グラデーションオーバーレイとより抽象的な画像 */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.jp/1920x800/1a272a/ffffff?text=Game+Creators+Circle') no-repeat center center; /* グラデーションオーバーレイとより抽象的な画像 */
     background-size: cover;
     height: 550px; /* 高さを調整 */
     display: flex;
@@ -73,11 +73,11 @@ header .nav-link:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at top left, rgba(153, 242, 200, 0.2), transparent 50%),
-                radial-gradient(circle at bottom right, rgba(31, 64, 55, 0.2), transparent 50%);
+    background: radial-gradient(circle at top left, rgba(153, 194, 242, 0.2), transparent 50%),
+                radial-gradient(circle at bottom right, rgba(31, 55, 64, 0.2), transparent 50%);
     opacity: 0.8;
 }
-  
+
 .hero-section h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 4.5rem; /* より大きく */
@@ -98,21 +98,21 @@ header .nav-link:hover::after {
         transform: translateY(0) scale(1);
     }
 }
-  
+
 /* 各セクション */
 .section-padding {
     padding: 100px 0; /* パディングを増やす */
 }
-  
+
 .bg-light {
-    background-color: #eef2f1 !important; /* より明るい背景色 */
+    background-color: #eef1f2 !important; /* より明るい背景色 */
 }
-  
+
 h2 {
     font-family: 'Montserrat', sans-serif;
     font-size: 3rem; /* サイズアップ */
     margin-bottom: 25px;
-    color: #1a2a27; /* ヘッダーと合わせた濃い色 */
+    color: #1a272a; /* ヘッダーと合わせた濃い色 */
     text-align: center;
     position: relative;
     padding-bottom: 15px;
@@ -126,10 +126,10 @@ h2::after {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background-color: #99f2c8;
+    background-color: #99c2f2;
     border-radius: 2px;
 }
-  
+
 p.lead {
     font-size: 1.3rem; /* サイズアップ */
     color: #555;
@@ -140,11 +140,11 @@ p.lead {
 
 h3 {
     font-family: 'Montserrat', sans-serif;
-    color: #1f4037;
+    color: #1f3740;
     margin-bottom: 15px;
     font-size: 2rem;
 }
-  
+
 /* カードデザイン */
 .card {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 影を強調 */
@@ -153,12 +153,12 @@ h3 {
     transition: transform 0.4s ease, box-shadow 0.4s ease; /* アニメーションを滑らかに */
     border: none; /* ボーダーを削除 */
 }
-  
+
 .card:hover {
     transform: translateY(-15px); /* 浮き上がるように */
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* 影をさらに強調 */
 }
-  
+
 .card img {
     height: 220px; /* 高さを調整 */
     object-fit: cover;
@@ -173,7 +173,7 @@ h3 {
 .card-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.4rem;
-    color: #1f4037;
+    color: #1f3740;
     margin-bottom: 10px;
 }
 
@@ -181,7 +181,7 @@ h3 {
     font-size: 1rem;
     color: #666;
 }
-  
+
 /* タブスタイル */
 .nav-tabs {
     border-bottom: none; /* デフォルトのボーダーを削除 */
@@ -209,7 +209,7 @@ h3 {
     left: -100%;
     width: 100%;
     height: 100%;
-    background-color: #99f2c8; /* ホバー時の背景色 */
+    background-color: #99c2f2; /* ホバー時の背景色 */
     transition: all 0.3s ease-in-out;
     z-index: -1;
     border-radius: 10px;
@@ -218,9 +218,9 @@ h3 {
 .nav-tabs .nav-link:hover::before {
     left: 0;
 }
-  
+
 .nav-tabs .nav-link.active {
-    background-color: #1f4037; /* アクティブ時の背景色 */
+    background-color: #1f3740; /* アクティブ時の背景色 */
     color: white;
     border-color: transparent;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -229,16 +229,16 @@ h3 {
 
 .nav-tabs .nav-link.active::before {
     left: 0; /* アクティブ時は最初から背景表示 */
-    background-color: #1f4037; /* アクティブ時の背景色 */
+    background-color: #1f3740; /* アクティブ時の背景色 */
 }
-  
+
 .nav-tabs .nav-link:hover {
     color: white; /* ホバー時のテキスト色 */
 }
-  
+
 /* ボタンスタイル */
 .btn-primary {
-    background-color: #1f4037; /* ベースカラー */
+    background-color: #1f3740; /* ベースカラー */
     border: none;
     padding: 12px 25px; /* パディングを調整 */
     border-radius: 8px; /* 角を丸く */
@@ -246,7 +246,7 @@ h3 {
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 .btn-primary:hover {
-    background-color: #2a6a58; /* ホバー時の色 */
+    background-color: #2a586a; /* ホバー時の色 */
     transform: translateY(-2px); /* 少し浮き上がる */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
@@ -265,7 +265,7 @@ h3 {
 
 /* フッター */
 footer {
-    background-color: #1a2a27; /* ヘッダーと合わせた濃い色 */
+    background-color: #1a272a; /* ヘッダーと合わせた濃い色 */
     color: white;
     padding: 30px 0; /* パディングを増やす */
     font-size: 0.9rem;
@@ -274,12 +274,12 @@ footer p {
     margin: 0;
 }
 .footer-links a {
-    color: #e0ffe0;
+    color: #e0faff;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 .footer-links a:hover {
-    color: #99f2c8;
+    color: #99c2f2;
 }
 
 /* フェードインアニメーション */
@@ -355,13 +355,13 @@ footer p {
 
 /* 広報バナー (Carousel) スタイル */
 .promotion-banner {
-    background-color: #f0f5f4; /* 少し明るい背景 */
+    background-color: #f0f4f5; /* 少し明るい背景 */
     padding: 60px 0;
     border-bottom: 1px solid #e0e0e0;
 }
 
 .promotion-banner h2 {
-    color: #1a2a27;
+    color: #1a272a;
 }
 
 .promotion-banner .carousel-item img {
@@ -400,14 +400,14 @@ footer p {
 }
 
 .promotion-banner .carousel-indicators button {
-    background-color: #1f4037;
+    background-color: #1f3740;
     height: 8px;
     width: 30px;
     border-radius: 5px;
 }
 
 .promotion-banner .carousel-indicators button.active {
-    background-color: #2a6a58;
+    background-color: #2a586a;
 }
 
 /* ブログカードのタグ表示 */
@@ -415,22 +415,22 @@ footer p {
     font-size: 0.8em;
     padding: 0.4em 0.7em;
     border-radius: 0.25rem;
-    background-color: #1f4037; /* または別の色 */
+    background-color: #1f3740; /* または別の色 */
     color: white;
 }
 
 /* blog-list.htmlのタグフィルタボタン */
 .btn-outline-primary {
-    color: #1f4037;
-    border-color: #1f4037;
+    color: #1f3740;
+    border-color: #1f3740;
     transition: all 0.3s ease;
 }
 
 .btn-outline-primary:hover,
 .btn-outline-primary.active {
-    background-color: #1f4037;
+    background-color: #1f3740;
     color: white;
-    border-color: #1f4037;
+    border-color: #1f3740;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
@@ -451,10 +451,10 @@ footer p {
 
 .detail-content h3 {
     font-size: 2.2rem;
-    color: #1a2a27;
+    color: #1a272a;
     margin-top: 40px;
     margin-bottom: 20px;
-    border-bottom: 2px solid #99f2c8;
+    border-bottom: 2px solid #99c2f2;
     padding-bottom: 10px;
 }
 
