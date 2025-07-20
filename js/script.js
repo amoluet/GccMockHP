@@ -14,9 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById('blog-title')) { // blog-detail.htmlの場合
         loadBlogArticleDetail();
     }
-
-    // 利用規約ポップアップの内容をlicence.htmlからロード
-    loadTermsAndConditions();
 });
 
 async function fetchHeader() {
@@ -101,11 +98,6 @@ async function loadBlogArticles(containerId, limit = null, tag = null) {
             articles = articles.filter(article => article.tags.includes(tag));
         }
 
-        // 記事数の制限
-        if (limit) {
-            articles = articles.slice(0, limit);
-        }
-
         const blogArticlesContainer = document.getElementById(containerId);
         if (!blogArticlesContainer) return;
         blogArticlesContainer.innerHTML = ''; // 既存のコンテンツをクリア
@@ -113,6 +105,11 @@ async function loadBlogArticles(containerId, limit = null, tag = null) {
         if (articles.length === 0) {
             blogArticlesContainer.innerHTML = '<p class="text-center col-12">該当する記事はありません。</p>';
             return;
+        }
+
+        // 記事数の制限
+        if (limit) {
+            articles = articles.slice(0, limit);
         }
 
         articles.forEach(article => {
@@ -125,7 +122,7 @@ async function loadBlogArticles(containerId, limit = null, tag = null) {
                             <p class="card-text text-muted">${article.date}</p>
                             <p class="card-text excerpt">${article.excerpt}</p>
                             <div class="blog-tags mt-auto mb-2">
-                                ${article.tags.map(tag => `<span class="badge bg-secondary me-1">${tag}</span>`).join('')}
+                                ${article.tags.map(tag => `<span class="badge bg-secondary me-1 blog-tag-clickable" data-tag="${tag}">${tag}</span>`).join('')}
                             </div>
                             <div class="text-end">
                                 <a href="blog-detail.html?id=${article.id}" class="btn btn-primary btn-sm">続きを読む</a>
@@ -136,6 +133,19 @@ async function loadBlogArticles(containerId, limit = null, tag = null) {
             `;
             blogArticlesContainer.insertAdjacentHTML('beforeend', cardHtml);
         });
+
+        // ブログ記事内のタグにイベントリスナーを追加
+        if (containerId === 'blog-articles-container') {
+            document.querySelectorAll('.blog-tag-clickable').forEach(tagElement => {
+                tagElement.addEventListener('click', (event) => {
+                    const selectedTag = event.target.dataset.tag;
+                    if (selectedTag) {
+                        window.location.href = `blog-list.html?tag=${encodeURIComponent(selectedTag)}`;
+                    }
+                });
+            });
+        }
+
     } catch (error) {
         console.error(`ブログ記事の読み込みに失敗しました (${containerId}):`, error);
     }
@@ -148,7 +158,8 @@ function loadTopBlogArticles() {
 
 // blog-list.html 用の全記事ロードとタグフィルタリング
 async function loadBlogList() {
-    await loadBlogArticles('blog-articles-container'); // まず全記事をロード
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialTag = urlParams.get('tag');
 
     // タグボタンの生成
     const response = await fetch('data/blog_articles.json');
@@ -160,10 +171,26 @@ async function loadBlogList() {
 
     const tagButtonsContainer = document.querySelector('#blog-list .text-center');
     if (tagButtonsContainer) {
-        // 「全て」ボタンは既にHTMLにあるので、それ以外のタグを追加
+        // 既存の「全て」ボタンを保持しつつ、他のタグを追加
+        const existingAllButton = tagButtonsContainer.querySelector('[data-tag="全て"]');
+        tagButtonsContainer.innerHTML = ''; // 一度クリアしてから再構築
+
+        // 「全て」ボタンを再追加
+        tagButtonsContainer.innerHTML += `<button class="btn btn-outline-primary btn-sm me-2 mb-2" data-tag="全て">全て</button>`;
+
+        // 他のタグボタンを追加
         Array.from(allTags).sort().forEach(tag => {
             tagButtonsContainer.innerHTML += `<button class="btn btn-outline-primary btn-sm me-2 mb-2" data-tag="${tag}">${tag}</button>`;
         });
+
+        // 初期タグが指定されている場合、そのタグのボタンをアクティブにする
+        let activeTagButton = tagButtonsContainer.querySelector(`[data-tag="${initialTag || '全て'}"]`);
+        if (activeTagButton) {
+            activeTagButton.classList.add('active');
+        } else {
+            // 不正なタグが指定された場合は「全て」をアクティブにする
+            tagButtonsContainer.querySelector('[data-tag="全て"]').classList.add('active');
+        }
 
         // タグボタンにイベントリスナーを追加
         tagButtonsContainer.addEventListener('click', (event) => {
@@ -177,9 +204,19 @@ async function loadBlogList() {
 
                 const selectedTag = target.dataset.tag;
                 loadBlogArticles('blog-articles-container', null, selectedTag);
+                // URLのクエリパラメータを更新して履歴に残す
+                const newUrl = new URL(window.location.href);
+                if (selectedTag === "全て") {
+                    newUrl.searchParams.delete('tag');
+                } else {
+                    newUrl.searchParams.set('tag', selectedTag);
+                }
+                window.history.pushState({ path: newUrl.href }, '', newUrl.href);
             }
         });
     }
+    // 初回ロード時、クエリパラメータに基づいて記事をロード
+    loadBlogArticles('blog-articles-container', null, initialTag);
 }
 
 async function loadBlogArticleDetail() {
@@ -210,7 +247,20 @@ async function loadBlogArticleDetail() {
             document.getElementById('blog-content').innerHTML = article.content;
 
             const tagsContainer = document.getElementById('blog-tags-container');
-            tagsContainer.innerHTML = article.tags.map(tag => `<span class="badge bg-info me-1">${tag}</span>`).join(''); // タグ表示
+            tagsContainer.innerHTML = article.tags.map(tag => 
+                `<span class="badge bg-info me-1 blog-tag-detail-clickable" data-tag="${tag}">${tag}</span>`
+            ).join(''); // タグ表示
+
+            // 詳細ページのタグにイベントリスナーを追加
+            document.querySelectorAll('.blog-tag-detail-clickable').forEach(tagElement => {
+                tagElement.addEventListener('click', (event) => {
+                    const selectedTag = event.target.dataset.tag;
+                    if (selectedTag) {
+                        window.location.href = `blog-list.html?tag=${encodeURIComponent(selectedTag)}`;
+                    }
+                });
+            });
+
         } else {
             document.getElementById('blog-title').textContent = '記事が見つかりません';
             document.getElementById('blog-date').textContent = '';
@@ -225,39 +275,6 @@ async function loadBlogArticleDetail() {
         document.getElementById('blog-thumbnail').style.display = 'none';
         document.getElementById('blog-content').innerHTML = '<p class="text-center">記事の読み込み中にエラーが発生しました。</p>';
         document.getElementById('blog-tags-container').innerHTML = ''; // タグもクリア
-    }
-}
-
-// 利用規約ポップアップの内容をlicence.htmlからロードする関数
-async function loadTermsAndConditions() {
-    try {
-        const response = await fetch('licence.html');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const licenceHtml = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(licenceHtml, 'text/html');
-        // licence.htmlの<body>内のコンテンツを抽出して挿入
-        const termsContentDiv = document.getElementById('terms-content');
-        if (termsContentDiv) {
-            const termsBodyContent = doc.body.innerHTML;
-            // licence.js が生成する #terms の内容のみを抽出
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = termsBodyContent;
-            const actualTerms = tempDiv.querySelector('#terms');
-            if (actualTerms) {
-                termsContentDiv.innerHTML = actualTerms.innerHTML;
-            } else {
-                termsContentDiv.innerHTML = '<p>利用規約のコンテンツを読み込めませんでした。</p>';
-            }
-        }
-    } catch (error) {
-        console.error('利用規約の読み込みに失敗しました:', error);
-        const termsContentDiv = document.getElementById('terms-content');
-        if (termsContentDiv) {
-            termsContentDiv.innerHTML = '<p>利用規約の読み込み中にエラーが発生しました。</p>';
-        }
     }
 }
 

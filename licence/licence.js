@@ -1,5 +1,5 @@
 const terms = {
-    lastUpdated: "2024年12月02日",
+    lastUpdated: "2025年7月21日",
     sections: [
       {
         title: "ダウンロードについて",
