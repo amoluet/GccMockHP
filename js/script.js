@@ -327,18 +327,36 @@ function togglePopup() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const loginForm = document.getElementById('loginForm');
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
     const loginMessage = document.getElementById('loginMessage');
+    const logoutButton = document.getElementById('logoutButton');
 
-    // モックのユーザー名とパスワード
-    const correctUsername = 'member';
-    const correctPassword = 'password';
+    let users = [];
+
+    // user.jsonを読み込む
+    try {
+        const response = await fetch('data/user.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        users = await response.json();
+        console.log('User data loaded:', users);
+    } catch (error) {
+        console.error('Failed to load user data:', error);
+        if (loginMessage) {
+            loginMessage.textContent = 'ユーザーデータの読み込みに失敗しました。';
+            loginMessage.className = 'alert alert-danger';
+            loginMessage.style.display = 'block';
+        }
+        return; // データ読み込み失敗時は以降の処理を行わない
+    }
 
     // 既にログインしている場合はmember-area.htmlへリダイレクト
-    if (localStorage.getItem('isLoggedIn') === 'true') {
+    // sessionStorageを使用し、ブラウザを閉じるとログイン状態がリセットされるように変更
+    if (sessionStorage.getItem('isLoggedIn') === 'true' && sessionStorage.getItem('loggedInUser')) {
         if (window.location.pathname.endsWith('login.html')) {
             window.location.href = 'member-area.html';
         }
@@ -351,13 +369,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const enteredUsername = usernameInput.value;
             const enteredPassword = passwordInput.value;
 
-            if (enteredUsername === correctUsername && enteredPassword === correctPassword) {
-                loginMessage.textContent = 'ログイン成功！部員ページへリダイレクトします...';
+            const foundUser = users.find(user => 
+                user.username === enteredUsername && user.password === enteredPassword
+            );
+
+            if (foundUser) {
+                loginMessage.textContent = `ログイン成功！ようこそ、${foundUser.displayName}さん。部員ページへリダイレクトします...`;
                 loginMessage.className = 'alert alert-success';
                 loginMessage.style.display = 'block';
 
-                // ログイン成功時にlocalStorageにフラグを保存
-                localStorage.setItem('isLoggedIn', 'true');
+                // ログイン成功時にsessionStorageにフラグとユーザー情報を保存
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('loggedInUser', JSON.stringify(foundUser)); // ユーザーオブジェクト全体を保存
 
                 setTimeout(() => {
                     window.location.href = 'member-area.html'; // 部員専用ページへリダイレクト
@@ -366,32 +389,79 @@ document.addEventListener('DOMContentLoaded', () => {
                 loginMessage.textContent = 'ユーザー名またはパスワードが間違っています。';
                 loginMessage.className = 'alert alert-danger';
                 loginMessage.style.display = 'block';
-                // 失敗時はlocalStorageのフラグをクリア
-                localStorage.removeItem('isLoggedIn');
+                // 失敗時はsessionStorageのフラグをクリア
+                sessionStorage.removeItem('isLoggedIn');
+                sessionStorage.removeItem('loggedInUser');
             }
         });
     }
-});
 
+    // member-area.html の場合のみ実行
+    if (window.location.pathname.endsWith('member-area.html')) {
+        const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+        const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
 
-if (window.location.pathname.endsWith('member-area.html')) {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-
-    if (isLoggedIn !== 'true') {
-        // ログインしていない場合、ログインページへリダイレクト
-        alert('このページへのアクセスにはログインが必要です。');
-        window.location.href = 'login.html';
-    }
-
-    // ログアウトボタンの処理
-    const logoutButton = document.getElementById('logoutButton'); 
-    if (logoutButton) {
-        logoutButton.addEventListener('click', () => {
-            localStorage.removeItem('isLoggedIn');
-            alert('ログアウトしました。');
+        if (isLoggedIn !== 'true' || !loggedInUser) {
+            // ログインしていない場合、ログインページへリダイレクト
+            alert('このページへのアクセスにはログインが必要です。');
             window.location.href = 'login.html';
-        });
-    } else {
-        console.log("IDが'logoutButton'の要素が見つかりません。");
+        } else {
+            // ログインしている場合、ユーザー名を部員ページに表示
+            // 新しい要素にユーザーアイコンと名前を表示
+            if (loggedInUserInfo) {
+                loggedInUserInfo.innerHTML = `
+                    <div class="d-flex align-items-center justify-content-center mb-4">
+                        <a href="user-profile.html?id=${loggedInUser.id}" class="d-flex align-items-center text-decoration-none text-dark">
+                            <img src="${loggedInUser.iconUrl}" alt="${loggedInUser.displayName}のアイコン" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover; border: 2px solid #99c2f2;">
+                            <h3 class="mb-0 text-primary">${loggedInUser.displayName}さん、ようこそ！</h3>
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        // ログアウトボタンの処理
+        if (logoutButton) {
+            logoutButton.addEventListener('click', () => {
+                sessionStorage.removeItem('isLoggedIn');
+                sessionStorage.removeItem('loggedInUser');
+                alert('ログアウトしました。');
+                window.location.href = 'login.html';
+            });
+        } else {
+            console.log("IDが'logoutButton'の要素が見つかりません。");
+        }
     }
-}
+
+    // user-profile.html の場合のみ実行
+    if (window.location.pathname.endsWith('user-profile.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('id');
+        const profileContainer = document.getElementById('userProfileContainer');
+
+        if (userId && profileContainer) {
+            const user = users.find(u => u.id === userId);
+            if (user) {
+                profileContainer.innerHTML = `
+                    <div class="card p-4 text-center">
+                        <img src="${user.iconUrl}" class="rounded-circle mx-auto mb-3" alt="${user.displayName}のアイコン" style="width: 100px; height: 100px; object-fit: cover;">
+                        <h2 class="card-title">${user.displayName}</h2>
+                        <p class="card-text text-muted">${user.bio}</p>
+                        <div class="social-icons mt-3">
+                            ${user.socialLinks.map(link => `
+                                <a href="${link.url}" target="_blank" class="text-decoration-none mx-2" title="${link.name}">
+                                    <i class="bi ${link.icon}"></i>
+                                </a>
+                            `).join('')}
+                        </div>
+                        <a href="javascript:history.back()" class="btn btn-secondary mt-4">戻る</a>
+                    </div>
+                `;
+            } else {
+                profileContainer.innerHTML = '<p class="text-center">指定されたユーザーは見つかりませんでした。</p>';
+            }
+        } else if (profileContainer) {
+            profileContainer.innerHTML = '<p class="text-center">ユーザーIDが指定されていません。</p>';
+        }
+    }
+});
