@@ -1,0 +1,115 @@
+/* 広報バナー (Carousel) スタイル */
+.promotion-banner {
+    background-color: #f0f4f5; /* 少し明るい背景 */
+    padding: 60px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.promotion-banner h2 {
+    color: #1a272a;
+}
+
+.promotion-banner .carousel-item img {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 350px; /* バナーの高さ調整 */
+    object-fit: cover;
+}
+
+.promotion-banner .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 0 0 10px 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    color: white;
+    text-align: left;
+}
+
+.promotion-banner .carousel-caption h5 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.promotion-banner .carousel-caption .badge {
+    font-size: 0.9em;
+    padding: 5px 10px;
+}
+
+.promotion-banner .carousel-control-prev-icon,
+.promotion-banner .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    padding: 20px;
+}
+
+.promotion-banner .carousel-indicators button {
+    background-color: #1f3740;
+    height: 8px;
+    width: 30px;
+    border-radius: 5px;
+}
+
+.promotion-banner .carousel-indicators button.active {
+    background-color: #2a586a;
+}
+
+/* ブログカードのタグ表示 */
+.blog-tags .badge {
+    font-size: 0.8em;
+    padding: 0.4em 0.7em;
+    border-radius: 0.25rem;
+    background-color: #1f3740; /* または別の色 */
+    color: white;
+}
+
+/* blog-list.htmlのタグフィルタボタン */
+.btn-outline-primary {
+    color: #1f3740;
+    border-color: #1f3740;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary.active {
+    background-color: #1f3740;
+    color: white;
+    border-color: #1f3740;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* ブログ記事詳細ページ */
+.detail-section {
+    padding-top: 80px; /* ヘッダーとの兼ね合いで調整 */
+    padding-bottom: 80px;
+}
+
+.detail-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 30px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.detail-content h3 {
+    font-size: 2.2rem;
+    color: #1a272a;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #99c2f2;
+    padding-bottom: 10px;
+}
+
+.detail-content p {
+    font-size: 1.1rem;
+    line-height: 2;
+    margin-bottom: 1.5rem;
+    color: #444;
+}
+
+.blog-tags .badge.bg-info { /* 詳細ページ用のタグの色 */
+    background-color: #0d6efd !important; /* Bootstrapのinfo色を例に */
+}

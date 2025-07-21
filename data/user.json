@@ -1,0 +1,26 @@
+[
+  {
+    "id": "member1",
+    "username": "member",
+    "password": "password",
+    "displayName": "部員A",
+    "iconUrl": "img/neko.png",
+    "bio": "ゲーム開発サークルでフロントエンドを担当しています。UnityとJavaScriptが得意です。",
+    "socialLinks": [
+      {"name": "X (旧Twitter)", "url": "https://twitter.com/", "icon": "bi-twitter"},
+      {"name": "GitHub", "url": "https://github.com/", "icon": "bi-github"}
+    ]
+  },
+  {
+    "id": "member2",
+    "username": "admin",
+    "password": "adminpass",
+    "displayName": "管理者B",
+    "iconUrl": "img/tumo.png",
+    "bio": "ゲーム制作とサイトのフロント、バックエンド開発を主に担当しています。CTFとC++に興味があります。",
+    "socialLinks": [
+      {"name": "X (旧Twitter)", "url": "https://twitter.com/", "icon": "bi-twitter"},
+      {"name": "Qiita", "url": "https://qiita.com/", "icon": "bi-journal-code"}
+    ]
+  }
+]

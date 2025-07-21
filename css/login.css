@@ -1,0 +1,74 @@
+/* ログインフォーム */
+.login-container {
+    background-color: #ffffff; /* フォームの背景色を白に */
+    padding: 40px 30px; /* 上下のパディングを増やし、左右は適度に */
+    border-radius: 10px; /* 角を丸く */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* 影を強調 */
+    max-width: 450px; /* フォームの最大幅を設定し、細長くなるのを防ぐ */
+    width: 100%; /* 親要素に合わせて幅を100%に */
+    margin: 50px auto; /* フォーム全体を上下にマージンを取り中央に配置 */
+    /* text-align: center; /* h2やボタンは子要素で制御するため削除 */
+}
+
+.login-container h2 {
+    color: #1a272a; /* ヘッダーと合わせた濃い色 */
+    font-size: 2.2rem; /* タイトルサイズを調整 */
+    margin-bottom: 30px; /* タイトル下のマージンを増やす */
+    position: relative;
+    padding-bottom: 10px;
+    text-align: center; /* h2を中央揃え */
+}
+
+.login-container h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px; /* 短い下線で強調 */
+    height: 3px;
+    background-color: #99c2f2;
+    border-radius: 2px;
+}
+
+.form-control {
+    padding: 12px 15px; /* 入力フィールドのパディングを増やす */
+    font-size: 1.1rem; /* フォントサイズを少し大きく */
+    border-radius: 8px; /* 角を丸く */
+    border: 1px solid #ddd; /* ボーダーの色を調整 */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #1f3740; /* フォーカス時のボーダー色 */
+    box-shadow: 0 0 0 0.25rem rgba(31, 55, 64, 0.25); /* フォーカス時の影 */
+}
+
+.login-container .btn-primary {
+    width: 100%; /* ボタンをフォーム幅いっぱいに */
+    padding: 15px; /* ボタンのパディングを増やす */
+    font-size: 1.2rem; /* ボタンのフォントサイズを大きく */
+    border-radius: 8px; /* ボタンの角を丸く */
+    margin-top: 25px; /* ボタンの上のマージン */
+}
+
+.login-container .alert {
+    margin-top: 20px; /* アラートメッセージの上のマージン */
+    font-size: 1rem;
+    padding: 10px;
+    text-align: center; /* アラートメッセージを中央揃え */
+}
+
+/* ラベルの隠し方（Bootstrap 5のvisually-hiddenを利用しているため、CSSでの調整は最小限に） */
+.form-label.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}

@@ -1,0 +1,327 @@
+/* 全体のスタイル */
+body {
+    font-family: 'Noto Sans JP', sans-serif; /* 日本語に合うフォントを追加 */
+    line-height: 1.8; /* 行間を広げて読みやすく */
+    color: #333; /* 全体的な文字色 */
+    background-color: #f4f6f7; /* 柔らかい背景色 */
+}
+
+/* ヒーローセクション */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.jp/1920x800/1a272a/ffffff?text=Game+Creators+Circle') no-repeat center center; /* グラデーションオーバーレイとより抽象的な画像 */
+    background-size: cover;
+    height: 550px; /* 高さを調整 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9); /* 影を強調 */
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(153, 194, 242, 0.2), transparent 50%),
+                radial-gradient(circle at bottom right, rgba(31, 55, 64, 0.2), transparent 50%);
+    opacity: 0.8;
+}
+
+.hero-section h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.5rem; /* より大きく */
+    font-weight: 700;
+    letter-spacing: 2px;
+    animation: fadeInScale 2s forwards; /* 新しいアニメーション */
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 各セクション */
+.section-padding {
+    padding: 100px 0; /* パディングを増やす */
+}
+
+.bg-light {
+    background-color: #eef1f2 !important; /* より明るい背景色 */
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem; /* サイズアップ */
+    margin-bottom: 25px;
+    color: #1a272a; /* ヘッダーと合わせた濃い色 */
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #99c2f2;
+    border-radius: 2px;
+}
+
+p.lead {
+    font-size: 1.3rem; /* サイズアップ */
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 30px auto; /* 中央揃えと下マージン */
+    line-height: 1.8;
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #1f3740;
+    margin-bottom: 15px;
+    font-size: 2rem;
+}
+
+/* カードデザイン */
+.card {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 影を強調 */
+    border-radius: 15px; /* 角を丸く */
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* アニメーションを滑らかに */
+    border: none; /* ボーダーを削除 */
+}
+
+.card:hover {
+    transform: translateY(-15px); /* 浮き上がるように */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* 影をさらに強調 */
+}
+
+.card img {
+    height: 220px; /* 高さを調整 */
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    color: #1f3740;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* タブスタイル */
+.nav-tabs {
+    border-bottom: none; /* デフォルトのボーダーを削除 */
+}
+.nav-tabs .nav-item {
+    margin: 0 5px; /* タブ間のスペース */
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    border-radius: 10px; /* 角を丸く */
+    color: #666;
+    padding: 12px 25px; /* パディングを調整 */
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden; /* 背景アニメーション用 */
+    z-index: 1;
+}
+
+.nav-tabs .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #99c2f2; /* ホバー時の背景色 */
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.nav-tabs .nav-link:hover::before {
+    left: 0;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #1f3740; /* アクティブ時の背景色 */
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px); /* 少し浮き上がる */
+}
+
+.nav-tabs .nav-link.active::before {
+    left: 0; /* アクティブ時は最初から背景表示 */
+    background-color: #1f3740; /* アクティブ時の背景色 */
+}
+
+.nav-tabs .nav-link:hover {
+    color: white; /* ホバー時のテキスト色 */
+}
+
+/* ボタンスタイル */
+.btn-primary {
+    background-color: #1f3740; /* ベースカラー */
+    border: none;
+    padding: 12px 25px; /* パディングを調整 */
+    border-radius: 8px; /* 角を丸く */
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #2a586a; /* ホバー時の色 */
+    transform: translateY(-2px); /* 少し浮き上がる */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* レスポンシブ対応の調整 */
+/* 小さい画面（sm以下）では中央揃え */
+@media (max-width: 767.98px) {
+    footer .col-md-4 {
+        text-align: center !important; /* 各カラムの中央揃えを強制 */
+    }
+    footer h5 {
+        margin-top: 25px; /* セクション間のスペース */
+    }
+}
+
+/* フェードインアニメーション */
+.animate {
+    opacity: 0;
+    transform: translateY(30px); /* 少し下から浮き上がる */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animate.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+.animate.fade-up {
+    opacity: 0;
+    transform: translateY(50px);
+}
+.animate.fade-up.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes overlayFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes overlayFadeReverse {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes popup2FadeY {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+@keyframes popup2FadeYReverse {
+    from { opacity: 1; transform: translate(-50%, -50%); }
+    to { opacity: 0; transform: translate(-50%, -60%); }
+}
+
+/* レスポンシブデザインの調整 */
+@media (max-width: 992px) {
+    .hero-section h1 {
+        font-size: 3.5rem;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+    .section-padding {
+        padding: 60px 0;
+    }
+    .footer-links {
+        margin-top: 15px;
+    }
+    .promotion-banner .carousel-item img {
+        height: 250px; /* 小さな画面での高さ */
+    }
+    .promotion-banner .carousel-caption h5 {
+        font-size: 1.4rem;
+    }
+    .promotion-banner .carousel-caption .badge {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        height: 350px;
+    }
+    .hero-section h1 {
+        font-size: 2.8rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    p.lead {
+        font-size: 1rem;
+    }
+    .card img {
+        height: 180px;
+    }
+    .nav-tabs .nav-link {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    .promotion-banner .carousel-item img {
+        height: 180px; /* さらに小さな画面での高さ */
+    }
+    .promotion-banner .carousel-caption {
+        padding: 10px;
+    }
+    .promotion-banner .carousel-caption h5 {
+        font-size: 1.2rem;
+    }
+    .promotion-banner .carousel-caption .badge {
+        display: none; /* 小さい画面ではカテゴリバッジを非表示に */
+    }
+}
