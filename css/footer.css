@@ -1,0 +1,67 @@
+/* フッター */
+footer {
+    background-color: #1a272a; /* ヘッダーと合わせた濃い色 */
+    color: white;
+    padding: 30px 0; /* パディングを増やす */
+    font-size: 0.9rem;
+}
+footer p {
+    margin: 0;
+}
+.footer-links a {
+    color: #e0faff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover {
+    color: #99c2f2;
+}
+
+/* SNSアイコンのスタイル */
+.social-icons a {
+    font-size: 1.8rem; /* アイコンのサイズ */
+    color: #e0faff; /* アイコンの色 */
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* transformのために必要 */
+}
+
+.social-icons a:hover {
+    color: #99c2f2; /* ホバー時の色 */
+    transform: scale(1.1); /* ホバー時に少し拡大 */
+}
+
+.social-icons a + a {
+    margin-left: 15px; /* アイコン間のスペース */
+}
+
+/* ポップアップ/オーバーレイ */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1040; /* Bootstrap modal-backdropのz-indexより高く */
+    animation: overlayFade 0.3s forwards;
+    backdrop-filter: blur(3px); /* 背景をぼかす */
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1050; /* Bootstrap modalのz-indexより高く */
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh; /* 高さの最大値を設定 */
+    overflow-y: auto; /* コンテンツがはみ出したらスクロール */
+    animation: popup2FadeY 0.3s forwards;
+}

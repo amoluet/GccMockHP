@@ -1,0 +1,45 @@
+/* ヘッダー */
+header {
+    background: linear-gradient(to right, #1a272a, #335566); /* 深い青系のグラデーション */
+    padding: 15px 0; /* パディングを増やす */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* 影を強調 */
+    position: sticky; /* スクロールしてもヘッダーを固定 */
+    top: 0;
+    z-index: 1020;
+}
+
+header .navbar-brand {
+    font-family: 'Montserrat', sans-serif; /* ロゴにモダンなフォント */
+    font-size: 1.8rem; /* サイズアップ */
+    font-weight: 700;
+    color: #e0faff !important; /* 明るい青 */
+    letter-spacing: 1px; /* 文字間隔 */
+}
+
+header .nav-link {
+    color: #e0faff !important; /* ナビリンクの色 */
+    margin: 0 15px; /* マージンを増やす */
+    transition: all 0.4s ease-in-out; /* ホバーアニメーションを滑らかに */
+    position: relative;
+    padding-bottom: 5px; /* 下線のためにスペースを確保 */
+}
+
+header .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #99c2f2; /* ホバー時の下線の色 */
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+
+header .nav-link:hover {
+    color: #99c2f2 !important; /* ホバー時の色を強調 */
+}
+
+header .nav-link:hover::after {
+    width: 100%; /* ホバー時に下線が広がる */
+}
